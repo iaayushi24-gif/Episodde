@@ -1,0 +1,6 @@
+{
+  "name": "EPISODE — Haute Streetwear Editorial Archive",
+  "description": "Archival haute streetwear atelier merging Indian heritage craft with brutalist couture tailoring.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,886 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EPISODE — Haute Streetwear Editorial Archive</title>
+<!-- Editorial Brutalist Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Anton', 'sans-serif'],
+          mono: ['"Space Grotesk"', 'monospace'],
+          sans: ['"Work Sans"', 'sans-serif'],
+        },
+        colors: {
+          onyx: '#0e0e0e',
+          surface: '#131313',
+          card: '#181819',
+          borderSubtle: '#262628',
+          vermilion: '#e63946',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .slide-active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
+  }
+  .slide-inactive {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+</style>
+</head>
+<body class="bg-onyx text-neutral-100 font-sans antialiased overflow-x-hidden selection:bg-white selection:text-black min-h-screen">
+<!-- INTERACTIVE TOAST NOTIFICATION -->
+<div class="fixed top-24 right-6 z-50 transform translate-x-[150%] transition-transform duration-300 ease-out bg-[#161617] border border-white/20 text-white px-5 py-3.5 shadow-2xl flex items-center gap-3 backdrop-blur-md" id="toastNotification">
+<span class="material-symbols-outlined text-vermilion text-xl" id="toastIcon">check_circle</span>
+<div>
+<p class="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase font-semibold" id="toastCategory">SYSTEM UPDATE</p>
+<p class="font-mono text-xs tracking-wider text-white" id="toastMessage">Item added to archive cart.</p>
+</div>
+</div>
+<!-- 1. TOP UTILITY ANNOUNCEMENT BAR -->
+<div class="w-full bg-black text-neutral-300 text-[10px] tracking-[0.2em] uppercase py-2 px-6 border-b border-borderSubtle font-medium">
+<div class="max-w-[1720px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-vermilion animate-pulse"></span>
+<span class="text-white font-semibold tracking-widest">FREE EXPRESS DELIVERY ON ARCHIVAL ORDERS OVER $500</span>
+</div>
+<div class="hidden md:flex items-center gap-6 text-neutral-400 font-mono text-[10px]">
+<a class="hover:text-white transition-colors" href="#lookbook">APP PREVIEW</a>
+<span class="text-neutral-700">|</span>
+<a class="hover:text-white transition-colors" href="#drop01">TRACK ORDER</a>
+<span class="text-neutral-700">|</span>
+<span class="text-neutral-300">CURRENCY: USD ($)</span>
+</div>
+</div>
+</div>
+<!-- 2. HIGH-FASHION MINIMALIST NAVIGATION -->
+<header class="sticky top-0 z-40 w-full bg-onyx/95 backdrop-blur-md border-b border-borderSubtle transition-all">
+<div class="max-w-[1720px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+<!-- Left Editorial Links -->
+<nav class="hidden lg:flex items-center gap-8 text-[11px] font-mono font-semibold tracking-[0.24em] uppercase text-neutral-400">
+<a class="hover:text-white transition-colors" href="#men">MEN</a>
+<a class="hover:text-white transition-colors" href="#women">WOMEN</a>
+<a class="hover:text-white transition-colors flex items-center gap-1.5" href="#runway">
+<span class="w-1 h-1 bg-vermilion rounded-full"></span>
+        RUNWAY
+      </a>
+<a class="hover:text-white transition-colors" href="#drop01">ARCHIVE</a>
+<a class="hover:text-white transition-colors" href="#designer">LOOKBOOK</a>
+</nav>
+<!-- Center Iconic Wordmark -->
+<div class="flex items-center">
+<a class="group inline-flex flex-col items-center" href="#">
+<span class="font-display text-3xl md:text-4xl tracking-[0.28em] uppercase text-white group-hover:tracking-[0.32em] transition-all">EPISODE</span>
+<span class="font-mono text-[8px] font-bold tracking-[0.38em] text-vermilion uppercase -mt-1">UGRFR 25</span>
+</a>
+</div>
+<!-- Right Action Suite -->
+<div class="flex items-center gap-5 text-neutral-300 text-[11px] font-mono font-semibold tracking-[0.16em]">
+<button class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none" onclick="showToast('ARCHIVE SEARCH', 'Global database index opened.')">
+<span class="material-symbols-outlined text-[19px]">search</span>
+<span class="hidden xl:inline uppercase">SEARCH</span>
+</button>
+<button class="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none" onclick="showToast('MEMBER SALON', 'Secure identity authentication.')">
+<span class="material-symbols-outlined text-[19px]">person</span>
+<span class="hidden xl:inline uppercase">LOGIN</span>
+</button>
+<button class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none" onclick="showToast('WISHLIST SAVED', 'Accessing stored items.')">
+<span class="material-symbols-outlined text-[19px]">favorite</span>
+<span class="hidden xl:inline uppercase">WISHLIST</span>
+<span class="text-neutral-500 font-mono text-[10px]" id="wishlistCountNav">(0)</span>
+</button>
+<button class="flex items-center gap-2 bg-white text-black px-3.5 py-2 hover:bg-neutral-200 transition-colors uppercase text-[10px] tracking-[0.2em] font-bold focus:outline-none" onclick="openCartDrawer()">
+<span class="material-symbols-outlined text-[17px]">shopping_bag</span>
+<span class="">CART (<span id="cartCountNav" class="">0</span>)</span>
+</button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- 3. HERO SECTION WITH CLEAN CINEMATIC VIDEO & WORKING SOUND TOGGLE (NO TEXT OVERLAY) -->
+<section class="relative w-full bg-onyx min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] overflow-hidden border-b border-borderSubtle flex items-center justify-center"><div class="w-full h-full min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] relative flex items-center justify-center overflow-hidden">
+<img alt="Editorial Fashion Visual" class="w-full h-full min-h-[75vh] md:min-h-[85vh] lg:min-h-[90vh] object-cover object-center filter brightness-[0.92] contrast-[1.08] transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFyRRDLkgYfjIKUSQFLfh9grWBG-z-ngjMAKl1Ea69hi9rvBKFfcJ1xky14Wn_9e50eZEykQO3cBocaIgdPVlJg4YmrZTtUc1sv8FtB8y9Jpo2PD8NyLBpSR0Ll9y8osRH-vyPSF5pv4pG5DlrvJnp3mZnMz0VKUoIpvSupXsBrScmwWEtBLWOPRJ4uqAVbbki5PWiaXWEmBbS2EHKdkxL3UYEgk-FZt5r9qbQ0J14MGoE_ZflU3PG">
+</div></section>
+<!-- 4. 3-COLUMN CATEGORY TRIPTYCH BANNER (IMAGE_10, IMAGE_9, IMAGE_11) -->
+<section class="w-full bg-[#111112] text-white py-12 px-6 md:px-12 border-b border-borderSubtle">
+<div class="max-w-[1720px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-borderSubtle">
+<!-- Category 01: MEN (IMAGE_10) -->
+<div class="flex items-center gap-6 pt-6 md:pt-0 md:px-6 first:pl-0 group cursor-pointer" id="men" onclick="scrollToId('drop01')">
+<div class="w-20 h-24 sm:w-24 sm:h-28 overflow-hidden bg-neutral-900 shrink-0 border border-borderSubtle">
+<img alt="Men architectural collection" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOWx2WNBDqvx7wJ-F0VFsTCxX03HbkYB4oA7zttbvKJBZQPziefTBG03flSfq6_qGL9j-u50jglLD-55LmUToCW3Tx8p6umbbFa3aQ24juTOwW7ODmjRvZzm4aT2C_0pqhoY-VbtCZ8yps_P4_LPwihhd80_rIksEymaHrTM2B-2u55mhbQTL5em_R3Gtr41H6b215cLl5Sr4x92GEKfD_4Pb9krlXB1geFKxzdKv-S49668rs2XYA">
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-mono text-[9px] uppercase tracking-[0.28em] text-vermilion font-semibold mb-1">01 ARCHITECTURAL</span>
+<h3 class="font-display text-2xl uppercase tracking-[0.08em] text-white mb-1 group-hover:text-neutral-300 transition-colors">MEN</h3>
+<p class="text-xs text-neutral-400 font-light mb-3">Elevated architectural essentials.</p>
+<span class="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-white group-hover:text-vermilion transition-colors">
+            SHOP MEN <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category 02: WOMEN (IMAGE_9) -->
+<div class="flex items-center gap-6 pt-6 md:pt-0 md:px-8 group cursor-pointer" id="women" onclick="scrollToId('drop01')">
+<div class="w-20 h-24 sm:w-24 sm:h-28 overflow-hidden bg-neutral-900 shrink-0 border border-borderSubtle">
+<img alt="Women draped silhouettes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWYCWxe7cVPD8zNx6epA52bFBKGbFp5h-QjG-jKnFiwPvY5YNfL3dhmn147DXTqwgy__yvIBTTqK9m3F-xdOhRXxwivGeEvRMZKGdL1i3-e11kTR6UACCu2RS6KrdpMgezciqmQhFvP6pXfd9SZ0R1qB2o_MX4z0tfZe7wgYUOoE9qUi1a99s2wYLvkIxDicsBIVNews4G80ohmXwQIwKswrOUgATQRvNW6qhHBgAAPJjvd6ObvR7i">
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-mono text-[9px] uppercase tracking-[0.28em] text-vermilion font-semibold mb-1">02 DRAPING &amp; WEAVE</span>
+<h3 class="font-display text-2xl uppercase tracking-[0.08em] text-white mb-1 group-hover:text-neutral-300 transition-colors">WOMEN</h3>
+<p class="text-xs text-neutral-400 font-light mb-3">Effortless style for every you.</p>
+<span class="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-white group-hover:text-vermilion transition-colors">
+            SHOP WOMEN <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Category 03: RUNWAY ARCHIVE (IMAGE_11) -->
+<div class="flex items-center gap-6 pt-6 md:pt-0 md:px-8 group cursor-pointer" id="runway" onclick="scrollToId('designer')">
+<div class="w-20 h-24 sm:w-24 sm:h-28 overflow-hidden bg-neutral-900 shrink-0 border border-borderSubtle">
+<img alt="Runway archive silhouettes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtC9GQY02teR0sejX3JNCRw8JrEZT80GBSttKIktQiXvDbhSMQ7GFm6juNcX0tLHfQ1vnmnbb-WhIay0tfWq7km-VwKmot5b48ZoeTpR7BOif4VT0spxqi2GiuyZc7H_NW-i-6_hWBaHnP-hirsyeLCixKOKK7TBBKZ8_9MLf6M3x3a0plMyAY-8ulKMV3Gx8LmRXIqlXsjR6z4KTzsSdEIzXP5z4oyTUZFuS0CWMGDE4S8hmZAnQa">
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-mono text-[9px] uppercase tracking-[0.28em] text-vermilion font-semibold mb-1">03 UGRFR 25</span>
+<h3 class="font-display text-2xl uppercase tracking-[0.08em] text-white mb-1 group-hover:text-neutral-300 transition-colors">RUNWAY</h3>
+<p class="text-xs text-neutral-400 font-light mb-3">UGRFR 25 limited numbered pieces.</p>
+<span class="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-white group-hover:text-vermilion transition-colors">
+            VIEW RUNWAY <span class="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. EDITORIAL FEATURE SPLIT BANNER (IMAGE_12) -->
+<section class="w-full bg-surface border-b border-borderSubtle overflow-hidden">
+<div class="max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[580px] items-center">
+<div class="lg:col-span-6 px-8 md:px-16 py-16 flex flex-col justify-center">
+<span class="font-mono text-[10px] uppercase tracking-[0.3em] text-vermilion font-semibold mb-3">NEW SEASON // DROP ARCHIVE</span>
+<h2 class="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-[0.02em] text-white leading-tight mb-5">
+          NEW VIBES // <br><span class="text-neutral-400">COUTURE DRAFT</span>
+</h2>
+<p class="text-neutral-400 text-sm md:text-base max-w-md mb-8 font-normal leading-relaxed">
+          Discover architectural brutalist silhouettes constructed with historic New Delhi jacquards. Raw hand-finished details meet precision-engineered tailoring.
+        </p>
+<div>
+<button class="inline-block bg-white text-black hover:bg-neutral-200 transition-colors px-9 py-4 font-mono font-bold text-[11px] tracking-[0.24em] uppercase cursor-pointer" onclick="scrollToId('drop01')">
+            EXPLORE COLLECTION
+          </button>
+</div>
+</div>
+<div class="lg:col-span-6 h-full flex items-end justify-center lg:justify-end px-6 md:px-12 pt-8">
+<div class="w-full max-w-md h-[460px] md:h-[540px] overflow-hidden bg-neutral-900 border border-borderSubtle relative group">
+<img alt="Model in vermilion embroidered jacket in archway" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI6MVutmRWusdGRTO5zPjYJ5eMNo_tAyhPRFez6z9A4kxbX12tu3srHpGxld7gC2Fw92Cq_BA8SeVBb3zcft2YZ3JRosijLMNDtLA9Uasp6l-UO-0a1sufWcmcWMnJCp4wbh6MagCAo_9a8IL7ai3pGiXpZK5syYO_Pwk7reEXubXS8ZC7MLmegFybUk9Rw-_waoiVoQD2Ms1oxUY26dKArriadAjMaMhY3wmI9Wy3cc2H2BcmphkI">
+<div class="absolute bottom-4 left-4 bg-black/90 border border-white/10 backdrop-blur-sm px-3.5 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-200 font-semibold">
+            FIGURE SPEC 04 / BRUTALIST JACKET
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. TRUST & ATELIER BADGES -->
+<section class="w-full bg-onyx py-12 px-6 md:px-12 border-b border-borderSubtle">
+<div class="max-w-[1720px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-neutral-400">local_shipping</span>
+<div>
+<h4 class="font-mono text-xs uppercase tracking-wider font-bold text-white">EXPRESS DELIVERY</h4>
+<p class="text-[11px] text-neutral-500 font-normal">Fast, insured global freight</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-neutral-400">published_with_changes</span>
+<div>
+<h4 class="font-mono text-xs uppercase tracking-wider font-bold text-white">EASY RETURNS</h4>
+<p class="text-[11px] text-neutral-500 font-normal">Within 15 days of archive arrival</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-neutral-400">verified</span>
+<div>
+<h4 class="font-mono text-xs uppercase tracking-wider font-bold text-white">QUALITY ASSURED</h4>
+<p class="text-[11px] text-neutral-500 font-normal">Authentic handloom provenance</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-neutral-400">lock</span>
+<div>
+<h4 class="font-mono text-xs uppercase tracking-wider font-bold text-white">SECURE PAYMENT</h4>
+<p class="text-[11px] text-neutral-500 font-normal">100% encrypted checkout</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. BEST OF EPISODE / GARMENT CATALOG (IMAGE_14, IMAGE_15, IMAGE_13, IMAGE_2) -->
+<section class="w-full bg-surface py-20 px-6 md:px-12 border-b border-borderSubtle" id="drop01">
+<div class="max-w-[1720px] mx-auto">
+<div class="flex items-end justify-between mb-12 border-b border-borderSubtle pb-5">
+<div>
+<span class="font-mono text-[9px] uppercase tracking-[0.3em] text-vermilion font-semibold block mb-1">CAPSULE HIGHLIGHTS</span>
+<h2 class="font-display text-3xl md:text-4xl uppercase tracking-[0.06em] text-white">BEST OF EPISODE</h2>
+</div>
+<button class="font-mono text-[11px] tracking-[0.2em] uppercase font-bold text-neutral-300 border-b border-neutral-500 pb-0.5 hover:text-white hover:border-white transition-colors cursor-pointer" onclick="showToast('ARCHIVE FILTER', 'Cataloging all numbered production editions.')">
+          VIEW ALL PIECES
+        </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Item 1: Look 07 (IMAGE_14) -->
+<article class="group flex flex-col bg-onyx border border-borderSubtle p-3 hover:border-neutral-500 transition-colors">
+<div class="relative w-full aspect-[3/4] bg-neutral-900 overflow-hidden mb-4">
+<img alt="Jacquard Brocade Overcoat" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjeE3oNDs5wmPbxFUpMPzy6mWoy_nNlRq0G9oM_kRvA8fiQm6sBUEKPS7n9T38eQKGh2V5Avxe08tui493fVORo0OEY_RXWhvqmPHflp7B8L8_U1NoB2Jx1uk3PYpIj_PJyjS47bWhSsUqcZQSZGXQUKz1yxPlPR6x21qwP189PeIql61t3pO6tVkiq2VmaDRjrQylNgUcyGyahOAWST_KS3vJ_l5H-ZuRSIu6hVdgeLsn5wlKAGV8">
+<button aria-label="Add to wishlist" class="wishlist-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center text-neutral-300 hover:text-vermilion hover:bg-black transition-colors focus:outline-none" onclick="toggleWishlist(this, 'JACQUARD BROCADE OVERCOAT')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-black/90 text-white px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase font-semibold border border-white/10">
+              LOOK 07 // EDITION OF 20
+            </div>
+</div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-mono text-xs uppercase tracking-wider font-bold text-white group-hover:text-neutral-300 transition-colors">JACQUARD BROCADE OVERCOAT</h3>
+<span class="font-mono text-xs font-bold text-neutral-300">$850.00</span>
+</div>
+<p class="text-[12px] text-neutral-400 font-light mb-4 line-clamp-1">Raw vermilion silk brocade &amp; structural drop collar.</p>
+<button class="w-full py-2.5 bg-white text-black hover:bg-neutral-200 active:bg-vermilion active:text-white transition-colors font-mono font-bold text-[10px] tracking-[0.2em] uppercase focus:outline-none" onclick="addToBag('JACQUARD BROCADE OVERCOAT', 850)">
+            ADD TO BAG
+          </button>
+</article>
+<!-- Item 2: Look 09 (IMAGE_15) -->
+<article class="group flex flex-col bg-onyx border border-borderSubtle p-3 hover:border-neutral-500 transition-colors">
+<div class="relative w-full aspect-[3/4] bg-neutral-900 overflow-hidden mb-4">
+<img alt="Fluid Relaxed Trouser" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZKCABjJp_RHqisATkxQ8hW5rvA1M4Ekr0ZIYOvH9kbd5G_QHlaSt-I1BLWERbu37wc3vD03F7ghn0KY2MKpgebMFB44pMRCfvZZfEM8Ju9k0hJamixU1AZQ9fnSGOrMLoG00RQG634XQ-6nEhVPaEuBRB3yH9JHxnjAaCl4nTFU-y2KS8pLq5ZIAYovVFZaz1y4Zyj16XH76wRCshZvXawQ4e2HoK2XrcLLwt9oG-YdYb2wRsxdMK">
+<button aria-label="Add to wishlist" class="wishlist-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center text-neutral-300 hover:text-vermilion hover:bg-black transition-colors focus:outline-none" onclick="toggleWishlist(this, 'FLUID RELAXED TROUSER')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-black/90 text-white px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase font-semibold border border-white/10">
+              LOOK 09 // EDITION OF 40
+            </div>
+</div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-mono text-xs uppercase tracking-wider font-bold text-white group-hover:text-neutral-300 transition-colors">FLUID RELAXED TROUSER</h3>
+<span class="font-mono text-xs font-bold text-neutral-300">$680.00</span>
+</div>
+<p class="text-[12px] text-neutral-400 font-light mb-4 line-clamp-1">High-twist cupro, floral apron wrap &amp; bronze cuff.</p>
+<button class="w-full py-2.5 bg-white text-black hover:bg-neutral-200 active:bg-vermilion active:text-white transition-colors font-mono font-bold text-[10px] tracking-[0.2em] uppercase focus:outline-none" onclick="addToBag('FLUID RELAXED TROUSER', 680)">
+            ADD TO BAG
+          </button>
+</article>
+<!-- Item 3: Look 06 (IMAGE_13) -->
+<article class="group flex flex-col bg-onyx border border-borderSubtle p-3 hover:border-neutral-500 transition-colors">
+<div class="relative w-full aspect-[3/4] bg-neutral-900 overflow-hidden mb-4">
+<img alt="Metallic Crinkle Tunic Dress" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKg-Bu8EBLHfZfP052zunaQCi1xjrYxs6kkqMskm-FhuiBdyLA_IYtHxa2cx7-U0zK7ZolAGN6huhtPPMANXIMk5vvtnjLMDQCrJkZ5cP2iYV7YtCLdSSLLzCsq-Rlemog-KgrXPxp9u9UfU9t066Rus8eDuT8qarNVPWgT8Am8D11_9vFfq5sjNLYluQGUGzcnHuJMwUN8n1I8DswzZOTJXJfAoEQ6Kyq7oHkeyJ8C-CvPirjRF09">
+<button aria-label="Add to wishlist" class="wishlist-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center text-neutral-300 hover:text-vermilion hover:bg-black transition-colors focus:outline-none" onclick="toggleWishlist(this, 'METALLIC CRINKLE TUNIC DRESS')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-black/90 text-white px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase font-semibold border border-white/10">
+              LOOK 06 // EDITION OF 35
+            </div>
+</div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-mono text-xs uppercase tracking-wider font-bold text-white group-hover:text-neutral-300 transition-colors">METALLIC CRINKLE TUNIC DRESS</h3>
+<span class="font-mono text-xs font-bold text-neutral-300">$740.00</span>
+</div>
+<p class="text-[12px] text-neutral-400 font-light mb-4 line-clamp-1">Crinkle sheen tunic layered over structured corset stays.</p>
+<button class="w-full py-2.5 bg-white text-black hover:bg-neutral-200 active:bg-vermilion active:text-white transition-colors font-mono font-bold text-[10px] tracking-[0.2em] uppercase focus:outline-none" onclick="addToBag('METALLIC CRINKLE TUNIC DRESS', 740)">
+            ADD TO BAG
+          </button>
+</article>
+<!-- Item 4: Look 04 (IMAGE_2) -->
+<article class="group flex flex-col bg-onyx border border-borderSubtle p-3 hover:border-neutral-500 transition-colors">
+<div class="relative w-full aspect-[3/4] bg-neutral-900 overflow-hidden mb-4">
+<img alt="Sheer Architectural Jacket" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY-jWkDVnB0cocRmROhljqIHcSgi-VDuuNInz-GkV3zO7IbUJbLX2ouzlR-dmPRyrFrbgMYcEM9fC2IWDKBl-iNSBhJyXMm1GYn8p97NLLckuahD-p4TsSEWxkuQxAkiIg5JR0mqv-HKCn4bqr81hLeLyskq2eqkPgVtvzm0Lq_dJjvvu0ElPcXt424lbTBNaf-u6HEsnTkukuwch4AvpvFX9U4OXUJBnx8ih09yWZQIWH30el3fL3">
+<button aria-label="Add to wishlist" class="wishlist-btn absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center text-neutral-300 hover:text-vermilion hover:bg-black transition-colors focus:outline-none" onclick="toggleWishlist(this, 'SHEER ARCHITECTURAL JACKET')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+<div class="absolute top-3 left-3 bg-black/90 text-white px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase font-semibold border border-white/10">
+              LOOK 04 // EDITION OF 25
+            </div>
+</div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-mono text-xs uppercase tracking-wider font-bold text-white group-hover:text-neutral-300 transition-colors">SHEER ARCHITECTURAL JACKET</h3>
+<span class="font-mono text-xs font-bold text-neutral-300">$620.00</span>
+</div>
+<p class="text-[12px] text-neutral-400 font-light mb-4 line-clamp-1">Sheer technical organza jacket with utilitarian patch pockets and boxing shorts.</p>
+<button class="w-full py-2.5 bg-white text-black hover:bg-neutral-200 active:bg-vermilion active:text-white transition-colors font-mono font-bold text-[10px] tracking-[0.2em] uppercase focus:outline-none" onclick="addToBag('SHEER ARCHITECTURAL JACKET', 620)">
+            ADD TO BAG
+          </button>
+</article>
+</div>
+</div>
+</section>
+<!-- 8. FABRIC & ATELIER TECHNICAL SPECIFICATIONS -->
+<section class="w-full bg-onyx py-20 px-6 md:px-12 border-b border-borderSubtle" id="specs">
+<div class="max-w-[1720px] mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-borderSubtle mb-12 gap-4">
+<div>
+<span class="font-mono text-[9px] uppercase tracking-[0.3em] text-vermilion font-semibold block mb-1">LAB REPORT DOC. 25-UGR</span>
+<h2 class="font-display text-3xl md:text-4xl uppercase tracking-[0.06em] text-white">MATERIAL &amp; TAILORING INNOVATION</h2>
+</div>
+<p class="text-xs text-neutral-500 font-mono uppercase tracking-widest">CUSTOM-LOOMED IN HISTORIC NEW DELHI MILLS</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Spec Card 1 -->
+<div class="bg-surface p-7 border border-borderSubtle hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300 space-y-4 group">
+<span class="font-mono text-[10px] text-vermilion font-bold tracking-widest uppercase group-hover:underline">01 // TEXTILE</span>
+<h3 class="font-mono text-sm uppercase tracking-wider font-bold text-white">HERITAGE RAW SILK JACQUARD</h3>
+<p class="text-xs text-neutral-400 leading-relaxed font-light">High-tensile crimson silk warp combined with metallic gold thread weft woven on historic shuttle looms.</p>
+<div class="pt-4 border-t border-borderSubtle space-y-1.5 font-mono text-[10px] uppercase text-neutral-500">
+<div class="flex justify-between"><span class="">Weight:</span><span class="text-neutral-200 font-semibold">420 GSM</span></div>
+<div class="flex justify-between"><span class="">Composition:</span><span class="text-neutral-200 font-semibold">68% Silk, 32% Metallic</span></div>
+</div>
+</div>
+<!-- Spec Card 2 -->
+<div class="bg-surface p-7 border border-borderSubtle hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300 space-y-4 group">
+<span class="font-mono text-[10px] text-vermilion font-bold tracking-widest uppercase group-hover:underline">02 // SILHOUETTE</span>
+<h3 class="font-mono text-sm uppercase tracking-wider font-bold text-white">DROPPED KIMONO COLLAR</h3>
+<p class="text-xs text-neutral-400 leading-relaxed font-light">Subversive East-Asian wrap draping integrated with brutalist structural tailoring and internal stays.</p>
+<div class="pt-4 border-t border-borderSubtle space-y-1.5 font-mono text-[10px] uppercase text-neutral-500">
+<div class="flex justify-between"><span class="">Drop:</span><span class="text-neutral-200 font-semibold">+12cm Oversized</span></div>
+<div class="flex justify-between"><span class="">Fastening:</span><span class="text-neutral-200 font-semibold">Concealed Magnet</span></div>
+</div>
+</div>
+<!-- Spec Card 3 -->
+<div class="bg-surface p-7 border border-borderSubtle hover:border-neutral-500 hover:-translate-y-1 transition-all duration-300 space-y-4 group">
+<span class="font-mono text-[10px] text-vermilion font-bold tracking-widest uppercase group-hover:underline">03 // HARDWARE</span>
+<h3 class="font-mono text-sm uppercase tracking-wider font-bold text-white">COLD-HAMMERED BRASS</h3>
+<p class="text-xs text-neutral-400 leading-relaxed font-light">Artisanal repoussé brass cuffs and waist accents hand-forged in small craft workshops in New Delhi.</p>
+<div class="pt-4 border-t border-borderSubtle space-y-1.5 font-mono text-[10px] uppercase text-neutral-500">
+<div class="flex justify-between"><span class="">Alloy:</span><span class="text-neutral-200 font-semibold">C260 Brass</span></div>
+<div class="flex justify-between"><span class="">Finish:</span><span class="text-neutral-200 font-semibold">Cold Repoussé</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. "KNOW YOUR DESIGNER — NANDINI SINGHLA" FULLY INTERACTIVE CAROUSEL -->
+<section class="w-full bg-onyx py-24 px-6 md:px-12 border-b border-borderSubtle" id="community">
+  <div class="max-w-[1720px] mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between pb-8 border-b border-borderSubtle mb-12 gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-1.5 h-1.5 bg-vermilion rounded-full"></span>
+          <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-vermilion font-semibold">
+            UNDERGROUND ATELIER &amp; SUBCULTURE NETWORK
+          </span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-[0.04em] text-white">
+          THE COMMUNITY // THE COLLECTIVE
+        </h2>
+      </div>
+      <p class="text-xs text-neutral-400 font-mono uppercase tracking-widest">
+        COLLABORATIVE ECOSYSTEM // ISSUE 01
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 relative group">
+        <div class="overflow-hidden bg-[#111112] border border-borderSubtle p-2">
+          <div class="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+            <img alt="Why creative communities matter - Collective backstage" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.95] contrast-[1.05]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc3e5MDOBzZmXP-jiZzTTG3fcPBfugC9UNFgE1I439Ppv0pkuGzachndt6JZPOybtLy3BMALDJYG5rIR3rDRUbIxKv4KUy6OZIQDePOX4OAGqUVdnNrwkeRCSCwG_mHOMk0sWzgWsAWDlp1FaOCt9Fv8ABGyr_X4jaSQG69A1uS7ANw9eiSzmJrCMydNo01D70P3Nka3iUEQSgWPQ1Ekh6lP4L2TcJDG3tlCBKZ3GsnIS8M4WZBnL3">
+            <div class="absolute bottom-4 left-4 bg-black/90 border border-white/10 backdrop-blur-sm px-3.5 py-1.5 font-mono text-[9px] uppercase tracking-widest text-neutral-200 font-semibold">
+              ARCHIVE MANIFESTO // FEAT. COLLECTIVE 01
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 flex flex-col justify-center space-y-8">
+        <div class="border-l-2 border-vermilion pl-5 py-1">
+          <p class="text-white font-medium text-base md:text-lg leading-relaxed mb-3">
+            Creativity never thrives in isolation—it catches fire when rebellious minds, artisans, and subversive spirits collide.
+          </p>
+          <p class="text-neutral-400 font-light text-sm md:text-base leading-relaxed">
+            The community is our living laboratory where underground fashion transforms from individual craft into cultural movement.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-surface p-5 border border-borderSubtle hover:border-neutral-500 transition-colors">
+            <span class="font-mono text-[10px] text-vermilion font-bold tracking-widest uppercase block mb-2">01 // INVITATION RAIDS</span>
+            <p class="text-xs text-neutral-300 leading-relaxed font-light">
+              Priority access to unreleased capsules, secret runway events, and archival drops.
+            </p>
+          </div>
+          <div class="bg-surface p-5 border border-borderSubtle hover:border-neutral-500 transition-colors">
+            <span class="font-mono text-[10px] text-vermilion font-bold tracking-widest uppercase block mb-2">02 // ATELIER DIALOGUE</span>
+            <p class="text-xs text-neutral-300 leading-relaxed font-light">
+              Direct exchange with collaborating artisans, pattern makers, and guest stylists.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <form class="flex flex-col sm:flex-row gap-0 max-w-lg border border-borderSubtle focus-within:ring-2 focus-within:ring-neutral-500" onsubmit="event.preventDefault(); showToast('COMMUNITY INITIATION', 'Access protocol dispatched to your handle.'); this.reset();">
+            <input class="bg-surface text-white px-4 py-3 text-xs font-mono tracking-wider placeholder:text-neutral-500 focus:outline-none flex-1 border-0" placeholder="ENTER YOUR HANDLE OR EMAIL..." required="" type="text">
+            <button class="bg-white text-black hover:bg-neutral-200 transition-colors px-6 py-3 font-mono text-[10px] tracking-widest uppercase font-bold shrink-0 cursor-pointer" type="submit">
+              JOIN THE COLLECTIVE
+            </button>
+          </form>
+          <span class="font-mono text-[9px] tracking-widest text-neutral-500 block mt-2 uppercase">EXCLUSIVE DISPATCH • PRIVATE MEMBERS NETWORK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><section class="w-full bg-[#111112] text-white py-24 px-6 md:px-12 border-b border-borderSubtle" id="designer">
+<div class="max-w-[1720px] mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 border-b border-borderSubtle mb-12">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 bg-vermilion rounded-full"></span>
+<span class="font-mono text-[10px] uppercase tracking-[0.3em] text-vermilion font-semibold">
+              ARCHIVAL PROVENANCE // BEHIND THE RUNWAY
+            </span>
+</div>
+<h2 class="font-display text-4xl sm:text-5xl md:text-6xl uppercase tracking-[0.04em] text-white">
+            KNOW YOUR DESIGNER — NANDINI SINGHLA
+          </h2>
+</div>
+<div class="max-w-md border-l-2 border-vermilion pl-5 py-0.5">
+<blockquote class="text-xs md:text-sm italic text-neutral-300 font-light leading-relaxed mb-2">
+            “Between this, and not knowing what day it is, I drift into my own surreal state. I stitched 20 looks, packed my bags and left.”
+          </blockquote>
+<span class="font-mono text-[10px] tracking-widest text-neutral-500 uppercase block font-semibold">
+            — NANDINI SINGHLA // FOUNDER &amp; CREATIVE DIRECTOR
+          </span>
+</div>
+</div>
+<!-- Functional Clean Carousel -->
+<div class="max-w-4xl mx-auto">
+<div class="relative bg-black overflow-hidden shadow-2xl border border-borderSubtle">
+<!-- Slide Track -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-black" id="designerCarouselTrack">
+<!-- Slide 1: Solitary Studio Ritual (IMAGE_22) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-active">
+<img alt="Solitary Studio Ritual - Nandini Singhla drafting at machine" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjkH60M1rYaVuAMzTXAIxV-Zu5NaFe0oTsfb3l2ILSKLI-2KLcxqSrb7jxR1RaRKlralkVLQJDE_q_IpkYkBYFyFCho8_1meSDjk3R-jIpjJbVjLSruGFGMBiDaK1OJ8OQ7PCYg6DJXfV4A9STUBQNdBAGog013SS7YMkrtBZzBYxWkL4uNvWr7d4JV-to_-bmCTzydIAOgJO-wfNYz7giD0YD1rjjGsxT4kaeBDt5Vp1cpxQ-xtBd">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                01 // SOLITARY STUDIO RITUAL
+              </div>
+</div>
+<!-- Slide 2: Croquis Design Wall (IMAGE_23) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-inactive">
+<img alt="Croquis Design Wall - Line drawings and silhouettes" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCitOH6zbiB9uo1rX2CLOnpmtXfdFcl41kHieEZEqKgcEHBfZW0b0INjR7USegLgbG3R5YlKVJl2HRCTmNqm3DAkHEeRCAg9RkKRgV9-9Afai4CC8P4HJX65_OwqGKsr7_C5ogCmzMd-mw4vYXlrf45JaczaygcmTD2kHUJgo_2zGa06xtvz9PfdabPFC2x6Dr1uXvO0chqdbownpykgLj29sIWAK7XFzTz0r-T7AirmdVUktulPnW_">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                02 // CROQUIS DESIGN WALL
+              </div>
+</div>
+<!-- Slide 3: Candle Denim Distressing (IMAGE_24) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-inactive">
+<img alt="Candle Denim Distressing - Thermal edge work" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyj2wU-g7A2RpNW6acIiPHZneNU93j4PFm-tr9PMGVQ6Z8lDK05AvPKtNHbOon8Lew73g182v9NCNA9iz3vJnekufysvPi9p5qrLemQGMRvP4PsFeD9GktQ-uBuaJyeP3pYmCYEUxEiFeFqtrTKxoqeHm4OneqWWXdaAXnOs9XzcdBxbF1x88TzKIywJZFRRmUjnIOCG__Pkq97qCmlsgTwhLxg8xSmH9NW26ymTTD1suHUd1scQIA">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                03 // CANDLE DENIM DISTRESSING
+              </div>
+</div>
+<!-- Slide 4: UGRFR Posters (IMAGE_25) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-inactive">
+<img alt="UGRFR Posters - Underground runway graphics" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuqYdEJUnRgVgjkKD_PyNBvdwnoLRy67_wOSJ1ecmtnmbjh8A-zwxgCzQMl2C0WF8e49A3sxcTCzIN1vNucEBj_D7BGz60ik-_y0JCypi5alFM4ldPtkgRCtyf_UhHpkR6uSid4-iFwnuNGKqjEaQ_T3xTKjs7dD26yJoT6_TFGJPUNonQ3S841y_0NF8M3Gel-X1Q7y-7oR-MiiDPCdQ_kyIXWYeVNeKL-KEzG9B1Yaw2EhAEsBcW">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                04 // UGRFR POSTERS &amp; GRAPHICS
+              </div>
+</div>
+<!-- Slide 5: Brocade Rack & Styling Boards (IMAGE_26) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-inactive">
+<img alt="Brocade Rack and Styling Boards backstage" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq5TeG84lYzNUfUI4r_P4xYJC-yXJPVUIgyMmUwNlYzP_De-NS6p5b9Sh7jV0MlGi42cDBNZLv4VdO1TNVBC-35mv5Qvx7f1p2Fzf0-fYbBCa59wun7t6FxiCSxTsYzVRF7UJgMwikSv7s7CIhLrBhM-L9f7pgbkGvk8YIHlYr9UcYl0QfAVciPdWOSuQClxNcF7XFuMZvxrNnHAhKU6z_AgF0imRIxaLeLS5kp3_jUSx4X-UE175Y">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                05 // BROCADE RACK &amp; STYLING BOARDS
+              </div>
+</div>
+<!-- Slide 6: Nandini Singhla Backstage Curation (IMAGE_8) -->
+<div class="designer-slide absolute inset-0 transition-opacity duration-700 ease-in-out slide-inactive">
+<img alt="Nandini Singhla Backstage Curation" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUgt33PCxV1lJsxOZtUm4ISSTwLyZFfj_BmNgytJSIf6iSvmH1h6rRJtW-GGINiHPu2Z26_WlNX6bA5YHGfte7PBQE4mBeizhGmeP21HU_SmgzoSKA5FBqKqpT55foCk2r85GTA99noVl8YdAWTBnL8qIlhUoSfBXfrBgZY7y5feUEApCEJal9MnxFRrn8MMB_Z8JJYEQDcVjhp6s79kfhVMyJWJsusSasnyMQW7EoEikmr_Lohuz4">
+<div class="absolute bottom-4 left-4 bg-black/85 px-3 py-1.5 border border-white/10 font-mono text-[10px] tracking-wider text-neutral-300">
+                06 // NANDINI SINGHLA BACKSTAGE CURATION
+              </div>
+</div>
+</div>
+<!-- Navigation Controls: Prev & Next -->
+<button aria-label="Previous Slide" class="absolute top-1/2 -translate-y-1/2 left-4 w-10 h-10 rounded-full bg-black/80 hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 z-20 border border-white/20 cursor-pointer shadow-lg" id="designerPrevBtn">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+</button>
+<button aria-label="Next Slide" class="absolute top-1/2 -translate-y-1/2 right-4 w-10 h-10 rounded-full bg-black/80 hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 z-20 border border-white/20 cursor-pointer shadow-lg" id="designerNextBtn">
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<!-- Status Bar with Slide Counter and Dots -->
+<div class="flex items-center justify-between px-6 py-4 bg-black border-t border-borderSubtle">
+<div class="font-mono text-xs tracking-widest text-neutral-400 font-semibold" id="carouselSlideCounter">
+              SLIDE 01 / 06
+            </div>
+<div class="flex items-center gap-2" id="designerDotsContainer">
+<button aria-label="Go to slide 1" class="designer-dot w-6 h-1 bg-vermilion transition-all duration-300 cursor-pointer" data-index="0"></button>
+<button aria-label="Go to slide 2" class="designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer" data-index="1"></button>
+<button aria-label="Go to slide 3" class="designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer" data-index="2"></button>
+<button aria-label="Go to slide 4" class="designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer" data-index="3"></button>
+<button aria-label="Go to slide 5" class="designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer" data-index="4"></button>
+<button aria-label="Go to slide 6" class="designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer" data-index="5"></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. PRIVATE SALON ACCESS / NEWSLETTER -->
+<section class="w-full bg-onyx py-20 px-6 text-center border-b border-borderSubtle">
+<div class="max-w-2xl mx-auto">
+<span class="font-mono text-[9px] tracking-[0.3em] uppercase text-vermilion block mb-2 font-bold">CONFIDENTIAL INVITATION</span>
+<h2 class="font-display text-3xl md:text-4xl uppercase tracking-wider text-white mb-3">EPISODE BULLETIN // PRIVATE SALON</h2>
+<p class="text-xs md:text-sm text-neutral-400 mb-8 font-light max-w-lg mx-auto leading-relaxed">
+        Gain priority allocation for unreleased couture capsules, numbered archive pieces, and private appointments at our New Delhi atelier.
+      </p>
+<form class="flex flex-col sm:flex-row gap-0 max-w-md mx-auto border border-borderSubtle focus-within:ring-2 focus-within:ring-neutral-500" id="newsletterForm">
+<input class="bg-surface text-white px-4 py-3 text-xs font-mono tracking-wider placeholder:text-neutral-500 focus:outline-none flex-1 border-0" id="newsletterEmail" placeholder="ENTER CLIENT EMAIL ADDRESS..." required="" type="email">
+<button class="bg-white text-black hover:bg-neutral-200 transition-colors px-6 py-3 font-mono text-[10px] tracking-widest uppercase font-bold shrink-0 cursor-pointer" type="submit">
+          REQUEST KEY
+        </button>
+</form>
+<span class="font-mono text-[9px] tracking-widest text-neutral-500 block mt-3 uppercase">STRICT CONFIDENTIALITY • NO SPAM</span>
+</div>
+</section>
+</main>
+<!-- 11. LUXURY EDITORIAL FOOTER -->
+<footer class="w-full bg-[#09090a] text-white py-16 px-6 md:px-12 border-t border-borderSubtle">
+<div class="max-w-[1720px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-borderSubtle">
+<!-- Brand Info -->
+<div class="md:col-span-4">
+<span class="font-display text-3xl tracking-[0.24em] uppercase text-white block mb-2">EPISODE</span>
+<p class="text-xs text-neutral-400 max-w-sm leading-relaxed mb-4 font-light">
+          Archival haute streetwear atelier merging Indian heritage craft with brutalist couture tailoring.
+        </p>
+<p class="font-mono text-[10px] uppercase text-neutral-500">
+          NEW DELHI ATELIER: HAUZ KHAS HERITAGE DISTRICT, ND 110016
+        </p>
+</div>
+<!-- Links Columns -->
+<div class="md:col-span-2 md:col-start-6">
+<h4 class="font-mono text-[10px] uppercase tracking-widest text-neutral-300 font-bold mb-3">COLLECTIONS</h4>
+<ul class="space-y-2 text-xs text-neutral-400 font-mono uppercase font-medium">
+<li class=""><a class="hover:text-white transition-colors" href="#men">Men Collection</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#women">Women Capsule</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#drop01">Drop 01 Pieces</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="#designer">The Designer</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-mono text-[10px] uppercase tracking-widest text-neutral-300 font-bold mb-3">SERVICES</h4>
+<ul class="space-y-2 text-xs text-neutral-400 font-mono uppercase font-medium">
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('SALON VIEWING', 'Appointment slots released quarterly.')">Private Viewing</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('ATELIER TAILORING', 'Bespoke measurements inquiry.')">Custom Tailoring</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('ARCHIVAL CARE', 'Restoration guide dispatched.')">Archival Care</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('AUTHENTICATION', 'Certificate of Provenance.')">Authentication</a></li>
+</ul>
+</div>
+<div class="md:col-span-3">
+<h4 class="font-mono text-[10px] uppercase tracking-widest text-neutral-300 font-bold mb-3">CONNECT</h4>
+<ul class="space-y-2 text-xs text-neutral-400 font-mono uppercase font-medium">
+<li class=""><a class="hover:text-white transition-colors flex items-center gap-1" href="https://instagram.com" rel="noopener" target="_blank">Instagram <span class="text-vermilion font-mono text-[10px]">@todayinepisode</span></a></li>
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('PRESS PACK', 'Editorial press kit requested.')">Editorial Press</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('STOCKISTS', 'Tokyo • Paris • New Delhi.')">Stockists &amp; Showrooms</a></li>
+</ul>
+</div>
+</div>
+<!-- Legal Sub-Bar -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[9px] uppercase tracking-widest text-neutral-600">
+<div class="">© 2026 EPISODE ATELIER NEW DELHI. ALL RIGHTS RESERVED.</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-neutral-300 transition-colors" href="#">PRIVACY POLICY</a>
+<a class="hover:text-neutral-300 transition-colors" href="#">TERMS OF ARCHIVE</a>
+<a class="hover:text-neutral-300 transition-colors" href="#">GLOBAL SHIPPING</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- 12. CART DRAWER OVERLAY -->
+<div class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" id="cartDrawerBackdrop" onclick="closeCartDrawer()"></div>
+<div class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#111112] border-l border-borderSubtle z-50 transform translate-x-full transition-transform duration-300 ease-out flex flex-col shadow-2xl" id="cartDrawer">
+<div class="p-6 border-b border-borderSubtle flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl text-neutral-300">shopping_bag</span>
+<h3 class="font-mono text-xs uppercase tracking-widest font-bold text-white">YOUR ARCHIVE BAG</h3>
+</div>
+<button class="text-neutral-400 hover:text-white transition-colors" onclick="closeCartDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-4" id="cartItemsList">
+<div class="text-center py-12 text-neutral-500 font-mono text-xs uppercase tracking-wider" id="emptyCartMessage">
+      No garments currently reserved in your bag.
+    </div>
+</div>
+<div class="p-6 border-t border-borderSubtle bg-onyx space-y-4">
+<div class="flex justify-between font-mono text-xs uppercase tracking-widest text-neutral-300">
+<span class="">SUBTOTAL</span>
+<span class="text-white font-bold" id="cartSubtotal">$0.00</span>
+</div>
+<p class="text-[10px] text-neutral-500 font-mono">Complimentary express air-courier included.</p>
+<button class="w-full py-3.5 bg-white text-black hover:bg-neutral-200 transition-colors font-mono font-bold text-[11px] tracking-[0.2em] uppercase" onclick="checkoutCart()">
+      CHECKOUT ARCHIVE
+    </button>
+</div>
+</div>
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+  // State Store
+  const state = {
+    cart: [],
+    wishlistCount: 0
+  };
+
+  function scrollToId(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Toast Functionality
+  let toastTimer = null;
+  function showToast(category, message, isError = false) {
+    const toast = document.getElementById('toastNotification');
+    const toastCat = document.getElementById('toastCategory');
+    const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+
+    if (!toast) return;
+
+    toastCat.textContent = category;
+    toastMsg.textContent = message;
+    toastIcon.textContent = isError ? 'error' : 'check_circle';
+    toastIcon.className = isError ? 'material-symbols-outlined text-vermilion text-xl' : 'material-symbols-outlined text-green-400 text-xl';
+
+    toast.classList.remove('translate-x-[150%]');
+    toast.classList.add('translate-x-0');
+
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('translate-x-0');
+      toast.classList.add('translate-x-[150%]');
+    }, 3200);
+  }
+
+  // Cart Interactions
+  function addToBag(title, price) {
+    state.cart.push({ title, price, id: Date.now() });
+    updateCartUI();
+    showToast('ARCHIVE RESERVED', `${title} added to bag ($${price})`);
+  }
+
+  function updateCartUI() {
+    const navCounter = document.getElementById('cartCountNav');
+    if (navCounter) navCounter.textContent = state.cart.length;
+
+    const list = document.getElementById('cartItemsList');
+    const emptyMsg = document.getElementById('emptyCartMessage');
+    const subtotalEl = document.getElementById('cartSubtotal');
+
+    if (!list) return;
+
+    if (state.cart.length === 0) {
+      if (emptyMsg) emptyMsg.style.display = 'block';
+      if (subtotalEl) subtotalEl.textContent = '$0.00';
+      return;
+    }
+
+    if (emptyMsg) emptyMsg.style.display = 'none';
+
+    let total = 0;
+    list.innerHTML = '';
+    state.cart.forEach((item, index) => {
+      total += item.price;
+      const row = document.createElement('div');
+      row.className = 'flex justify-between items-center bg-onyx p-3 border border-borderSubtle';
+      row.innerHTML = `
+        <div>
+          <p class="font-mono text-xs uppercase font-bold text-white tracking-wider">${item.title}</p>
+          <p class="font-mono text-[11px] text-neutral-400">$${item.price}.00</p>
+        </div>
+        <button onclick="removeFromCart(${index})" class="text-neutral-500 hover:text-vermilion text-xs font-mono uppercase transition-colors">
+          <span class="material-symbols-outlined text-base">delete</span>
+        </button>
+      `;
+      list.appendChild(row);
+    });
+
+    if (subtotalEl) subtotalEl.textContent = `$${total.toFixed(2)}`;
+  }
+
+  function removeFromCart(index) {
+    state.cart.splice(index, 1);
+    updateCartUI();
+    showToast('BAG UPDATED', 'Garment removed from bag.');
+  }
+
+  function openCartDrawer() {
+    const drawer = document.getElementById('cartDrawer');
+    const backdrop = document.getElementById('cartDrawerBackdrop');
+    if (drawer && backdrop) {
+      backdrop.classList.remove('hidden');
+      setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+      drawer.classList.remove('translate-x-full');
+    }
+  }
+
+  function closeCartDrawer() {
+    const drawer = document.getElementById('cartDrawer');
+    const backdrop = document.getElementById('cartDrawerBackdrop');
+    if (drawer && backdrop) {
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('translate-x-full');
+      setTimeout(() => backdrop.classList.add('hidden'), 300);
+    }
+  }
+
+  function checkoutCart() {
+    if (state.cart.length === 0) {
+      showToast('ARCHIVE BAG EMPTY', 'Please select a runway piece first.', true);
+      return;
+    }
+    showToast('DISPATCH INITIATED', 'Proceeding to encrypted client checkout...');
+    setTimeout(() => {
+      state.cart = [];
+      updateCartUI();
+      closeCartDrawer();
+      showToast('ORDER CONFIRMED', 'Archive order recorded under NDA confirmation.');
+    }, 1200);
+  }
+
+  // Wishlist Interaction
+  function toggleWishlist(btn, itemName) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    const isSaved = icon.textContent === 'favorite';
+
+    if (isSaved) {
+      icon.textContent = 'favorite_border';
+      icon.classList.remove('text-vermilion');
+      state.wishlistCount = Math.max(0, state.wishlistCount - 1);
+      showToast('WISHLIST REMOVED', `${itemName} removed.`);
+    } else {
+      icon.textContent = 'favorite';
+      icon.classList.add('text-vermilion');
+      state.wishlistCount += 1;
+      showToast('WISHLIST ADDED', `${itemName} saved to archive.`);
+    }
+
+    const navCount = document.getElementById('wishlistCountNav');
+    if (navCount) navCount.textContent = `(${state.wishlistCount})`;
+  }
+
+  // Hero Video Sound Toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('heroVideo');
+    const soundBtn = document.getElementById('videoSoundBtn');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundLabel = document.getElementById('soundLabel');
+
+    if (video && soundBtn) {
+      soundBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (video.muted) {
+          video.muted = false;
+          soundIcon.textContent = 'volume_up';
+          soundIcon.classList.add('text-vermilion');
+          soundLabel.textContent = 'MUTE SOUND';
+          showToast('AUDIO ENGAGED', 'Runway ambient sound active.');
+        } else {
+          video.muted = true;
+          soundIcon.textContent = 'volume_off';
+          soundIcon.classList.remove('text-vermilion');
+          soundLabel.textContent = 'UNMUTE SOUND';
+          showToast('AUDIO MUTED', 'Playback audio silenced.');
+        }
+      });
+    }
+
+    // Designer Carousel Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.designer-slide');
+    const dots = document.querySelectorAll('.designer-dot');
+    const prevBtn = document.getElementById('designerPrevBtn');
+    const nextBtn = document.getElementById('designerNextBtn');
+    const counter = document.getElementById('carouselSlideCounter');
+    const totalSlides = slides.length;
+
+    function renderSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+
+      slides.forEach((slide, i) => {
+        if (i === currentSlide) {
+          slide.classList.remove('slide-inactive');
+          slide.classList.add('slide-active');
+        } else {
+          slide.classList.remove('slide-active');
+          slide.classList.add('slide-inactive');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === currentSlide) {
+          dot.className = 'designer-dot w-6 h-1 bg-vermilion transition-all duration-300 cursor-pointer';
+        } else {
+          dot.className = 'designer-dot w-2 h-1 bg-neutral-700 hover:bg-neutral-500 transition-all duration-300 cursor-pointer';
+        }
+      });
+
+      if (counter) {
+        const num = String(currentSlide + 1).padStart(2, '0');
+        const tot = String(totalSlides).padStart(2, '0');
+        counter.textContent = `SLIDE ${num} / ${tot}`;
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        renderSlide(currentSlide - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        renderSlide(currentSlide + 1);
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', function(e) {
+        e.preventDefault();
+        const idx = parseInt(this.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) renderSlide(idx);
+      });
+    });
+
+    // Newsletter Form
+    const newsletter = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('newsletterEmail');
+    if (newsletter) {
+      newsletter.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const val = emailInput.value;
+        if (val) {
+          showToast('INVITATION DISPATCHED', `Private Salon key sent to ${val}`);
+          emailInput.value = '';
+        }
+      });
+    }
+  });
+</script>
+
+
+
+
+</body></html>
